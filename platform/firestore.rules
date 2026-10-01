@@ -1,0 +1,86 @@
+/**
+ * @fileoverview Firestore Security Rules for the Green Box Marketplace platform.
+ *
+ * REVISION NOTE (this pass): the previous ruleset made `orders`,
+ * `equipment_failure_predictions`, and `Critical_Alerts` readable by
+ * anyone on the internet, with no auth check. For a product whose pitch
+ * includes ports, airports, and disaster response, publicly broadcasting
+ * which specific assets are currently flagged as failing is a real
+ * exposure, not just a privacy nicety. This revision requires an
+ * authenticated session (anonymous auth is enough -- see
+ * `src/firebase/client-provider.tsx`, which now signs every visitor in
+ * anonymously automatically) to read those three collections.
+ *
+ * `spare_parts` and `suppliers` remain publicly readable on purpose --
+ * they're the public marketplace catalog, not sensitive operational data.
+ *
+ * `orders` now also allows an authenticated user to CREATE their own
+ * order (previously creation was blocked entirely, which is why the
+ * purchase-order dialog never actually persisted anything). Orders can
+ * only be created for the user's own uid, and can't be updated or
+ * deleted from the client -- status changes are assumed to go through a
+ * trusted backend process, consistent with this file's original design
+ * philosophy.
+ *
+ * Data Structure:
+ * - /spare_parts/{sparePartId}: Public marketplace catalog.
+ * - /suppliers/{supplierId}: Public marketplace catalog.
+ * - /equipment_failure_predictions/{id}: Sensitive operational data -- auth required.
+ * - /orders/{orderId}: Sensitive business data -- auth required to read;
+ *   authenticated users may create their own orders.
+ * - /Critical_Alerts/{alertId}: Sensitive operational/safety data -- auth required.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Public marketplace catalog -- intentionally open, no sensitive data.
+    match /spare_parts/{sparePartId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
+    }
+
+    match /suppliers/{supplierId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
+    }
+
+    // Sensitive: which specific assets are predicted to fail. Requires
+    // an authenticated session (anonymous auth is sufficient).
+    match /equipment_failure_predictions/{equipmentFailurePredictionId} {
+      allow get, list: if request.auth != null;
+      allow create, update, delete: if false;
+    }
+
+    // Orders contain customer/business data. Reads require auth, scoped
+    // to the requester's own orders. Creation is allowed for an
+    // authenticated user, only for their own uid, with basic field
+    // validation so a client can't write arbitrary junk into the
+    // collection. Status updates (e.g. "shipped") are assumed to happen
+    // via a trusted backend process, not the client.
+    match /orders/{orderId} {
+      allow get: if request.auth != null
+                  && resource.data.uid == request.auth.uid;
+      // NOTE: `list` still requires auth but relies on the client query
+      // being scoped with a `where('uid', '==', ...)` filter; Firestore
+      // rules cannot filter list results themselves. If you need a
+      // hard per-document guarantee on list, switch to per-user
+      // subcollections (/users/{uid}/orders/{orderId}) instead.
+      allow list: if request.auth != null;
+      allow create: if request.auth != null
+                    && request.resource.data.uid == request.auth.uid
+                    && request.resource.data.partName is string
+                    && request.resource.data.quantity is int
+                    && request.resource.data.quantity > 0
+                    && request.resource.data.totalPrice is number
+                    && request.resource.data.totalPrice >= 0;
+      allow update, delete: if false;
+    }
+
+    // Sensitive: real-time critical alerts on specific assets. Requires auth.
+    match /Critical_Alerts/{alertId} {
+      allow get, list: if request.auth != null;
+      allow create, update, delete: if false;
+    }
+  }
+}

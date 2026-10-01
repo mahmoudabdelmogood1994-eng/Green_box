@@ -1,0 +1,14 @@
+# Platform (Next.js) — see platform/.gitignore for the full list
+platform/node_modules/
+platform/.next/
+platform/out/
+platform/.env*
+platform/.genkit/
+
+# Firmware build artifacts
+firmware/*.o
+firmware/reflex_test
+
+# OS / editor cruft
+.DS_Store
+*.swp

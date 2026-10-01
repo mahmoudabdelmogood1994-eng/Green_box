@@ -1,0 +1,52 @@
+{
+  "placeholderImages": [
+    {
+      "id": "part-001",
+      "description": "Industrial Gear",
+      "imageUrl": "https://images.unsplash.com/photo-1563062067-7700e1d9ae1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxpbmR1c3RyaWFsJTIwZ2VhcnxlbnwwfHx8fDE3NjEyMTE1MjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "industrial gear"
+    },
+    {
+      "id": "part-002",
+      "description": "Hydraulic Pump",
+      "imageUrl": "https://images.unsplash.com/photo-1735321627021-c0d876db94a3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxoeWRyYXVsaWMlMjBwdW1wfGVufDB8fHx8MTc2MTIxMTUyNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hydraulic pump"
+    },
+    {
+      "id": "part-003",
+      "description": "Conveyor Belt",
+      "imageUrl": "https://images.unsplash.com/photo-1717386255950-f7fbe05eb6c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb252ZXlvciUyMGJlbHR8ZW58MHx8fHwxNzYxMjExNTI0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "conveyor belt"
+    },
+    {
+      "id": "part-004",
+      "description": "Servo Motor",
+      "imageUrl": "https://images.unsplash.com/photo-1720670996738-f8d12d3aba17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzZXJ2byUyMG1vdG9yfGVufDB8fHx8MTc2MTIxMTUyNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "servo motor"
+    },
+    {
+      "id": "part-005",
+      "description": "Ball Bearing",
+      "imageUrl": "https://images.unsplash.com/photo-1712045348056-773b912e8f7f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxiYWxsJTIwYmVhcmluZ3xlbnwwfHx8fDE3NjEyMTE1MjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ball bearing"
+    },
+    {
+      "id": "part-006",
+      "description": "Pressure Sensor",
+      "imageUrl": "https://images.unsplash.com/photo-1691926495061-6a2826241f9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwcmVzc3VyZSUyMHNlbnNvcnxlbnwwfHx8fDE3NjEyMTE1MjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pressure sensor"
+    },
+    {
+      "id": "part-007",
+      "description": "PLC Unit",
+      "imageUrl": "https://images.unsplash.com/photo-1515655748683-7d9551b0556d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwbGMlMjB1bml0fGVufDB8fHx8MTc2MTIxMTUyNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "plc unit"
+    },
+    {
+      "id": "part-008",
+      "description": "Robotic Arm Gripper",
+      "imageUrl": "https://images.unsplash.com/photo-1680783954745-3249be59e527?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxyb2JvdGljJTIwYXJtfGVufDB8fHx8MTc2MTE5OTQzM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "robotic arm"
+    }
+  ]
+}
